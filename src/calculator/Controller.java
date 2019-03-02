@@ -13,10 +13,13 @@ public class Controller {
     public Text output;
 
     public void typing() {
-        input.setText(input.getText().replace("k", ""));
-        input.setText(input.getText().replace("p", ""));
-        input.setText(input.getText().replace("c", ""));
-        input.positionCaret(input.getLength());
+        if (input.getText().contains("k") || input.getText().contains("c") || input.getText().contains("p")){
+            input.setText(input.getText().replaceAll("k", ""));
+            input.setText(input.getText().replaceAll("p", ""));
+            input.setText(input.getText().replaceAll("c", ""));
+            input.positionCaret(input.getLength());
+        }
+
         String x = input.getText();
         if (x.isEmpty()) {
             output.setText("");
@@ -47,7 +50,7 @@ public class Controller {
         if (keyEvent.getCode() == KeyCode.K) {
             input.setText("(" + input.getText() + ")\u00B2");
         }
-        if (keyEvent.getCode() == KeyCode.C) {
+        if (keyEvent.getCode() == KeyCode.C || keyEvent.getCode() == KeyCode.ENTER) {
             input.clear();
             output.setText("");
         }
